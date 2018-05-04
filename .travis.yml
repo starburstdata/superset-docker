@@ -6,3 +6,18 @@ services:
 
 script:
   - docker build -t local-test-image .
+  - docker run --rm --detach --name local-test-container local-test-image
+  - |
+    (
+        set -euo pipefail
+        attempt=0
+        health=unknown
+        while test "${attempt}" -lt 60; do
+            attempt=$[ attempt + 1 ]
+            health="$(docker inspect --format='{{.State.Health.Status}}' local-test-container)"
+            echo "At attempt ${attempt} health is '${health}'."
+            test "${health}" != "healthy" || break
+            sleep 2
+        done
+        test "${health}" = "healthy"
+    )

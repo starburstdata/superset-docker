@@ -60,5 +60,6 @@ VOLUME /superset
 USER superset
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["gunicorn", "superset:app"]
-HEALTHCHECK CMD ["curl", "-f", "http://localhost:8088/health"]
+# Equivalent of `curl -f http://localhost:8088/health' without pulling additional dependencies.
+HEALTHCHECK CMD ["python", "-c", "from urllib2 import urlopen; urlopen('http://localhost:8088/health')"]
 EXPOSE 8088
