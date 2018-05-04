@@ -1,5 +1,7 @@
 # Superset docker container
 
+[![Build Status](https://travis-ci.org/starburstdata/superset-docker.svg?branch=master)](https://travis-ci.org/starburstdata/superset-docker)
+
 ## Container characteristic
 
 - superset running with gunicorn on port 8088

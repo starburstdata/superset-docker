@@ -1,0 +1,8 @@
+language: generic # undocumented except for https://github.com/travis-ci/docs-travis-ci-com/issues/910
+sudo: required
+
+services:
+  - docker
+
+script:
+  - docker build -t local-test-image .
