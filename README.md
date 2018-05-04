@@ -1,6 +1,7 @@
 # Superset docker container
 
 [![Build Status](https://travis-ci.org/starburstdata/superset-docker.svg?branch=master)](https://travis-ci.org/starburstdata/superset-docker)
+[![Docker Automated build](https://img.shields.io/docker/automated/starburstdata/superset.svg)](https://hub.docker.com/r/starburstdata/superset/)
 
 ## Container characteristic
 
