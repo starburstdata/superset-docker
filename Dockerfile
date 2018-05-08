@@ -1,8 +1,6 @@
 FROM ubuntu:16.04
 LABEL maintainer="https://www.starburstdata.com/"
 
-ARG SUPERSET_VERSION=0.25.0
-
 RUN set -xeu && \
     export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
@@ -24,7 +22,7 @@ RUN set -xeu && \
         gevent==1.2.2 `# needed for gunicorn -k gevent` \
         pyhive[presto]==0.5.1 `# recommended for Presto on https://superset.incubator.apache.org/installation.html` \
         redis==2.10.6 \
-        superset=="${SUPERSET_VERSION}" \
+        superset==0.24.0 \
         && \
     apt-get remove -y \
         \*-dev \
