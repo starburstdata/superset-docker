@@ -15,10 +15,19 @@ script:
         health=unknown
         while test "${attempt}" -lt 60; do
             attempt=$[ attempt + 1 ]
+            status="$(docker inspect --format='{{.State.Status}}' local-test-container)"
+            test "${status}" != "exited" || {
+                echo "Container has exited" >&2
+                break
+            }
             health="$(docker inspect --format='{{.State.Health.Status}}' local-test-container)"
             echo "At attempt ${attempt} health is '${health}'."
             test "${health}" != "healthy" || break
             sleep 2
         done
+        set -x
+        status="$(docker inspect --format='{{.State.Status}}' local-test-container)"
+        test "${status}" = "running"
+        health="$(docker inspect --format='{{.State.Health.Status}}' local-test-container)"
         test "${health}" = "healthy"
     )
