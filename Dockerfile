@@ -22,7 +22,9 @@ RUN set -xeu && \
         gevent==1.2.2 `# needed for gunicorn -k gevent` \
         pyhive[presto]==0.5.1 `# recommended for Presto on https://superset.incubator.apache.org/installation.html` \
         redis==2.10.6 \
-        superset==0.24.0 \
+        flask==0.12.4 `# TODO remove, should be pulled by superset; was failing container startup` \
+        SQLAlchemy-Utils'~=0.0,<0.33' `# TODO remove, should be pulled by superset; was failing webapp startup` \
+        superset==0.25.0 \
         && \
     apt-get remove -y \
         \*-dev \
