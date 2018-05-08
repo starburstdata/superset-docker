@@ -6,7 +6,8 @@ services:
 
 script:
   - docker build -t local-test-image .
-  - docker run --rm --detach --name local-test-container local-test-image
+  - docker run --detach --name local-test-container local-test-image
+  - "docker logs --follow local-test-container | sed 's/^/local-test-container: /' &"
   - |
     (
         set -euo pipefail
