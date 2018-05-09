@@ -20,6 +20,7 @@ RUN set -xeu && \
         && \
     pip install --no-cache-dir \
         gevent==1.2.2 `# needed for gunicorn -k gevent` \
+        psycopg2-binary `# for superset own database` \
         pyhive[presto]==0.5.1 `# recommended for Presto on https://superset.incubator.apache.org/installation.html` \
         redis==2.10.6 \
         flask==0.12.4 `# TODO remove, should be pulled by superset; was failing container startup` \
