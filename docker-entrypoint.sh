@@ -25,9 +25,9 @@ stderr "Updating the database."
 superset db upgrade
 superset init
 
-if test -v SUPERSET_CONTAINER_POST_INIT; then
-    stderr "Running post-init hook ${SUPERSET_CONTAINER_POST_INIT}."
-    bash -euo pipefail -c "${SUPERSET_CONTAINER_POST_INIT}"
+if test -v SUPERSET_POST_INIT; then
+    stderr "Running post-init hook ${SUPERSET_POST_INIT}."
+    bash -euo pipefail -c "${SUPERSET_POST_INIT}"
 fi
 
 set -x
