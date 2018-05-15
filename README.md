@@ -19,6 +19,9 @@ docker run starburstdata/superset
 
 ## Configuration options
 
+- admin user's username and password is controlled by `SUPERSET_ADMIN_USERNAME` and
+  `SUPERSET_ADMIN_PASSWORD` respectively, both default to "admin". Set
+  `SUPERSET_ADMIN_USERNAME` to empty to suppress admin user creation.
 - Custom configuration (`superset_config.py`): mount a folder with the configuration
   file (typically named `superset_config.py`) and set the path to the file in env
   `SUPERSET_CONFIG_PATH`.
