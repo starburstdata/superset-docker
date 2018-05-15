@@ -7,7 +7,6 @@ services:
 script:
   - docker build -t local-test-image .
   - docker run --detach --name local-test-container local-test-image
-  - "docker logs --follow local-test-container | sed 's/^/local-test-container: /' &"
   - |
     (
         set -euo pipefail
@@ -31,3 +30,8 @@ script:
         health="$(docker inspect --format='{{.State.Health.Status}}' local-test-container)"
         test "${health}" = "healthy"
     )
+
+after_failure:
+  - "docker logs local-test-container 2>&1 | tail -1000 | sed 's/^/local-test-container: /'"
+after_success:
+  - "docker logs local-test-container 2>&1 | tail -1000 | sed 's/^/local-test-container: /'"
