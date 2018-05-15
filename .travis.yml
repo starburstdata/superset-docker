@@ -32,6 +32,6 @@ script:
     )
 
 after_failure:
-  - "docker logs local-test-container | tail -1000 | sed 's/^/local-test-container: /'"
+  - "docker logs local-test-container 2>&1 | tail -1000 | sed 's/^/local-test-container: /'"
 after_success:
-  - "docker logs local-test-container | tail -1000 | sed 's/^/local-test-container: /'"
+  - "docker logs local-test-container 2>&1 | tail -1000 | sed 's/^/local-test-container: /'"
